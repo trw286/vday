@@ -16,7 +16,7 @@ body {
 }
 
 .card {
-    width: min(520px, 92vw);
+    width: min(1080px, 92vw);
     padding: 28px;
     border-radius: 18px;
     background: white;
@@ -107,4 +107,12 @@ body {
 #taunt.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.vid {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 14px;
 }
