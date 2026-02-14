@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Valentine</title>
+	<link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+	<main class="page">
+		<section class="card">
+			<h1>will you be my valentine</h1>
+			<h2>(please don't click no)</h2>
+
+			<div class="buttons">
+				<a class="btn btn-yes" href="/highlights">Yes</a>
+				<button id="noBtn" class="btn btn-no" type="button">No</button>
+			</div>
+
+			<p id="result" class="result" aria-live="polite"></p>
+		</section>
+	</main>
+
+	<script>
+		const yesBtn = document.getElementById("yesBtn");
+		const noBtn = document.getElementById("noBtn");
+		const result = document.getElementById("result");
+
+		// make the "No" button run away 😈
+		noBtn.addEventListener("mouseenter", () => {
+			const pad = 16;
+			const maxX = window.innerWidth - noBtn.offsetWidth - pad;
+			const maxY = window.innerHeight - noBtn.offsetHeight - pad;
+
+			const x = Math.max(pad, Math.floor(Math.random() * maxX));
+			const y = Math.max(pad, Math.floor(Math.random() * maxY));
+
+			noBtn.style.position = "fixed";
+			noBtn.style.left = x + "px";
+			noBtn.style.top = y + "px";
+		});
+
+	</script>
+</body>
+
+</html>
