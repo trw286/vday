@@ -17,6 +17,7 @@
 			<div class="buttons">
 				<a class="btn btn-yes" href="/highlights">Yes</a>
 				<button id="noBtn" class="btn btn-no" type="button">No</button>
+				<p id="taunt" class="result" aria-live="polite"></p>
 			</div>
 
 			<p id="result" class="result" aria-live="polite"></p>
@@ -24,13 +25,35 @@
 	</main>
 
 	<script>
-		const yesBtn = document.getElementById("yesBtn");
 		const noBtn = document.getElementById("noBtn");
-		const result = document.getElementById("result");
+		const taunt = document.getElementById("taunt");
 
-		// make the "No" button run away 😈
+		const taunts = [
+			"i told you no",
+			"why are you still trying",
+			"cmon...",
+			"nah",
+			"be fr",
+			"just click yes"
+		];
+
+		let tauntIndex = 0;
+		let tauntOnRight = true;
+
+		function nextTaunt() {
+			const msg = taunts[tauntIndex];
+			tauntIndex = (tauntIndex + 1) % taunts.length;
+			return msg;
+		}
+
+		function clamp(val, min, max) {
+			return Math.max(min, Math.min(max, val));
+		}
+
 		noBtn.addEventListener("mouseenter", () => {
 			const pad = 16;
+			const gap = 10;
+
 			const maxX = window.innerWidth - noBtn.offsetWidth - pad;
 			const maxY = window.innerHeight - noBtn.offsetHeight - pad;
 
@@ -40,9 +63,28 @@
 			noBtn.style.position = "fixed";
 			noBtn.style.left = x + "px";
 			noBtn.style.top = y + "px";
-		});
 
+			taunt.textContent = nextTaunt();
+
+			taunt.classList.add("show");
+
+			const r = noBtn.getBoundingClientRect();
+			const tw = taunt.offsetWidth;
+			const th = taunt.offsetHeight;
+
+			tauntOnRight = !tauntOnRight;
+
+			let tx = tauntOnRight ? (r.right + gap) : (r.left - gap - tw);
+			let ty = r.top + (r.height / 2) - (th / 2);
+
+			tx = clamp(tx, pad, window.innerWidth - tw - pad);
+			ty = clamp(ty, pad, window.innerHeight - th - pad);
+
+			taunt.style.left = tx + "px";
+			taunt.style.top = ty + "px";
+		});
 	</script>
+
 </body>
 
 </html>

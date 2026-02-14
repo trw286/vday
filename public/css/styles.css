@@ -88,3 +88,23 @@ body {
     height: 100%;
     border-radius: 14px;
 }
+
+#taunt {
+    position: fixed;
+    font-weight: 800;
+    font-size: 18px;
+    margin: 0;
+    pointer-events: none;
+    background: transparent;
+    padding: 8px 12px;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .12s ease, transform .12s ease;
+    z-index: 9999;
+}
+
+#taunt.show {
+    opacity: 1;
+    transform: translateY(0);
+}
