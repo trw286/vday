@@ -82,6 +82,20 @@
 
 			taunt.style.left = tx + "px";
 			taunt.style.top = ty + "px";
+
+			const t = taunt.getBoundingClientRect();
+			const overlaps =
+				!(t.right < r.left || t.left > r.right || t.bottom < r.top || t.top > r.bottom);
+
+			if (overlaps) {
+
+				let tyAbove = r.top - gap - th;
+
+				if (tyAbove < pad) tyAbove = r.bottom + gap;
+
+				tyAbove = clamp(tyAbove, pad, window.innerHeight - th - pad);
+				taunt.style.top = tyAbove + "px";
+			}
 		});
 	</script>
 
