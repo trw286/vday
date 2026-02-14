@@ -12,6 +12,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // middleware
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/files", express.static(path.join(__dirname, "files")));
 
 // render homepage
 app.get("/", (req, res) => {
